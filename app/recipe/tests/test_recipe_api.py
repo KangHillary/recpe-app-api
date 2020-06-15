@@ -151,6 +151,7 @@ class PrivateRecipeApiTest(TestCase):
         res = self.client.post(RECIPE_URL, payload)
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         recipe = Recipe.objects.get(id=res.data['id'])
+        # retrieve all ingredients
         ingredients = recipe.ingredients.all()
         self.assertEqual(ingredients.count(), 2)
         self.assertIn(ingredient1, ingredients)
